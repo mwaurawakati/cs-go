@@ -1,0 +1,401 @@
+package demoparser
+
+import (
+	common "github.com/markus-wa/demoinfocs-golang/v2/pkg/demoinfocs/common"
+	events "github.com/markus-wa/demoinfocs-golang/v2/pkg/demoinfocs/events"
+	"time"
+)
+
+// AttackData stores the features of a single sample fed into the model.
+type AttackData struct {
+	MapCrc  uint32
+	MapName string
+
+	// Kill(PlayerDeath) information
+	//KillWeapon                 string
+	//Victim                int
+	//Killer                int
+	Assisted              bool
+	KillPenetratedObjects int
+	KillIsHeadshot        bool
+	KillAssistedFlash     bool
+	KillAttackerBlind     bool
+	KillNoScope           bool
+	KillThroughSmoke      bool
+	KillDistance          float32
+	IsWallBang            bool
+	attackerSteamID64     uint64
+	//attackerName               string
+	victimSteamID64 uint64
+	//victimName                 string
+	AttackHitGroup             events.HitGroup
+	AttackGamePhase            common.GamePhase
+	IsWarmUpPeriodDuringAttack bool
+	IsMatchStarted             bool
+	HealthDamageTaken          int
+	//AttackWeapon               string
+
+	Frame []int
+	tick  []int
+
+	//AttackerDATA
+	attackerFlashDuration []float32
+	attackerVelocity0     []float64
+	attackerVelocity1     []float64
+	attackerVelocity2     []float64
+	//attackerActiveWeapon                  []string
+	attackerLastAlivePosition0            []float64
+	attackerLastAlivePosition1            []float64
+	attackerLastAlivePosition2            []float64
+	attackerViewDirectionX                []float32
+	attackerViewDirectionY                []float32
+	attackerIsDucking                     []bool
+	attackerPlayerHealth                  []int
+	attackerFiring                        []bool
+	attackerAmmoInMagazine                []int //
+	attackerPing                          []int
+	attackerIsScoped                      []bool
+	attackerAmmoReserve                   []int
+	attackerZoomLevel                     []common.ZoomLevel
+	attackerAmmoType                      []int
+	attackerRecoilIndex                   []float32
+	attackerBurstMode                     []bool
+	attackerReloadVisuallyComplete        []bool
+	attackerSilencerOn                    []bool
+	attackerAccuracyPenalty               []float32
+	attackerLastShotTime                  []float32
+	attackerDoneSwitchingSilencer         []bool
+	attackerPostponeFireReadyTime         []float32
+	attackerIronSightMode                 []int
+	attackerWeaponMode                    []bool
+	attackerAmmoLeft                      [][32]int
+	attackerFlashTick                     []int
+	attackerIsBot                         []bool
+	attackerIsControllingBot              []bool
+	attackerIsConnected                   []bool
+	attackerIsDefusing                    []bool
+	attackerIsPlanting                    []bool
+	attackerIsReloading                   []bool
+	attackerIsUnknown                     []bool
+	attackerIsAlive                       []bool
+	attackerIsBlinded                     []bool
+	attackerIsAirborne                    []bool
+	attackerFlashDurationTime             []time.Duration
+	attackerFlashDurationTimeFull         []time.Duration
+	attackerIsWalking                     []bool
+	attackerIsDuckingInProgress           []bool
+	attackerIsUnDuckingInProgress         []bool
+	attackerIsStanding                    []bool
+	attackerHasHelmet                     []bool
+	attackerArmor                         []int
+	attackerPositionX                     []float64
+	attackerPositionY                     []float64
+	attackerPositionZ                     []float64
+	attackerPositionEyesX                 []float64
+	attackerPositionEyesY                 []float64
+	attackerPositionEyesZ                 []float64
+	attackerHeadPositionX                 []float64
+	attackerHeadPositionY                 []float64
+	attackerHeadPositionZ                 []float64
+	attackerPlayerFlags                   []common.PlayerFlags
+	attackerOnGround                      []bool
+	attackerDuckingKeyPressed             []bool
+	attackerHasHeavyArmor                 []bool
+	attackerHasMovedSinceSpawn            []bool
+	attackerIsGrabbingHostage             []bool
+	attackerIsHoldingLookAtWeapon         []bool
+	attackerIsLookingAtWeapon             []bool
+	attackerIsRescuing                    []bool
+	attackerResumeZone                    []bool
+	attackerStrafing                      []bool
+	attackerWaitForNoAttack               []bool
+	attackerMolotovDamageTime             []float64
+	attackerFlashMaxAlpha                 []float64
+	attackerLowerYawBodyTarget            []float64
+	attackerThirdpersonRecoil             []float32
+	attackerBlockingUseActionInProgress   []int
+	attackerMoveState                     []int
+	attackerPlayerState                   []int
+	attackerViewPunchAngleX               []float64
+	attackerViewPunchAngleY               []float64
+	attackerViewPunchAngleZ               []float64
+	attackerAimPunchAngleX                []float64
+	attackerAimPunchAngleY                []float64
+	attackerAimPunchAngleZ                []float64
+	attackerAimPunchAngleVelX             []float64
+	attackerAimPunchAngleVelY             []float64
+	attackerAimPunchAngleVelZ             []float64
+	attackerInDuckJump                    []bool
+	attackerFOVRate                       []float64
+	attackerFallVelocity                  []float64
+	attackerStepSize                      []float32
+	attackerWearingSuit                   []bool
+	attackerPoisoned                      []bool
+	attackerDuckOverride                  []float64
+	attackerStamina                       []float64
+	attackerVelocityModifier              []float64
+	attackerDirection                     []int
+	attackerShotsFired                    []int
+	attackerTimeOfLastInjury              []float64
+	attackerRelativeDirectionOfLastInjury []int
+	attackerVecLadderNormalX              []float64
+	attackerVecLadderNormalY              []float64
+	attackerVecLadderNormalZ              []float64
+	attackerPhysicsCollisionState         []int
+	attackerWaterLevel                    []int
+	attackerLifeState                     []int
+	attackerLadderSurfaceProps            []int
+	attackerFOVStart                      []int
+	attackerFOV                           []int
+	attackerDefaultFOV                    []int
+	attackerMaxSpeed                      []float64
+	attackerFOVTime                       []float64
+	attackerDuckSpeed                     []float64
+	attackerDuckAmount                    []float64
+	attackerPhysicsFlags                  []int
+	attackerVecBaseVelocityX              []float64
+	attackerVecBaseVelocityY              []float64
+	attackerVecBaseVelocityZ              []float64
+	attackerLaggedMovementValue           []float64
+	attackerM3ReloadState                 []bool
+	attackerNOVAReloadState               []bool
+	attackerSawedoffReloadState           []bool
+	attackerXM1014ReloadState             []bool
+	attackerMoveType                      []int
+	attackerMoveCollide                   []int
+	attackerUseLookAtAngle                []float32
+	attackerSimulationTime                []int
+	attackerShadowCastDistance            []float32
+	attackerMaxFallVelocity               []float32
+	attackerLastMadeNoiseTime             []float64
+	attackerNextPrimaryAttack             []float32
+	attackerNextSecondaryAttack           []float32
+	attackerTimeWeaponIdle                []float32
+	attackerWeaponState                   []int
+	attackerBurstShotsRemaining           []int
+	attackerViewTarget                    []int
+	attackerForceBone                     []int
+	attackerDeltaYaw                      []float32
+	attackerDeltaPitch                    []float32
+	crosshairToVictimYaw                  []float32
+	crosshairToVictimPitch                []float32
+	AttackerSpottedTargetPlayer           []bool
+	attackerViewVectorX                   []float64
+	attackerViewVectorY                   []float64
+	attackerViewVectorZ                   []float64
+	AttackerToVictimX                     []float64
+	AttackerToVictimY                     []float64
+	AttackerToVictimZ                     []float64
+	AttackerSpottedByVictim               []bool
+	AttackerFootstep                      []bool
+	AttackerDistance                      []float32
+	AttackerFixedPitch                    []float32
+	AttackerFallDamage                    []float32
+	AttackerWeaponFireOnEmpty             []bool
+
+	//VictimData
+	victimFlashDuration []float32
+	victimVelocity0     []float64
+	victimVelocity1     []float64
+	victimVelocity2     []float64
+	//victimActiveWeapon                  []string
+	victimLastAlivePosition0            []float64
+	victimLastAlivePosition1            []float64
+	victimLastAlivePosition2            []float64
+	victimViewDirectionX                []float32
+	victimViewDirectionY                []float32
+	victimIsDucking                     []bool
+	victimPlayerHealth                  []int
+	victimFiring                        []bool
+	victimAmmoInMagazine                []int //
+	victimPing                          []int
+	victimIsScoped                      []bool
+	victimAmmoReserve                   []int
+	victimZoomLevel                     []common.ZoomLevel
+	victimAmmoType                      []int
+	victimRecoilIndex                   []float32
+	victimBurstMode                     []bool
+	victimReloadVisuallyComplete        []bool
+	victimSilencerOn                    []bool
+	victimAccuracyPenalty               []float32
+	victimLastShotTime                  []float32
+	victimDoneSwitchingSilencer         []bool
+	victimPostponeFireReadyTime         []float32
+	victimIronSightMode                 []int
+	victimWeaponMode                    []bool
+	victimAmmoLeft                      [][32]int
+	victimFlashTick                     []int
+	victimIsBot                         []bool
+	victimIsControllingBot              []bool
+	victimIsConnected                   []bool
+	victimIsDefusing                    []bool
+	victimIsPlanting                    []bool
+	victimIsReloading                   []bool
+	victimIsUnknown                     []bool
+	victimIsAlive                       []bool
+	victimIsBlinded                     []bool
+	victimIsAirborne                    []bool
+	victimFlashDurationTime             []time.Duration
+	victimFlashDurationTimeFull         []time.Duration
+	victimIsWalking                     []bool
+	victimIsDuckingInProgress           []bool
+	victimIsUnDuckingInProgress         []bool
+	victimIsStanding                    []bool
+	victimHasHelmet                     []bool
+	victimArmor                         []int
+	victimPositionX                     []float64
+	victimPositionY                     []float64
+	victimPositionZ                     []float64
+	victimPositionEyesX                 []float64
+	victimPositionEyesY                 []float64
+	victimPositionEyesZ                 []float64
+	victimHeadPositionX                 []float64
+	victimHeadPositionY                 []float64
+	victimHeadPositionZ                 []float64
+	victimPlayerFlags                   []common.PlayerFlags
+	victimOnGround                      []bool
+	victimDuckingKeyPressed             []bool
+	victimHasHeavyArmor                 []bool
+	victimHasMovedSinceSpawn            []bool
+	victimIsGrabbingHostage             []bool
+	victimIsHoldingLookAtWeapon         []bool
+	victimIsLookingAtWeapon             []bool
+	victimIsRescuing                    []bool
+	victimResumeZone                    []bool
+	victimStrafing                      []bool
+	victimWaitForNoAttack               []bool
+	victimMolotovDamageTime             []float64
+	victimFlashMaxAlpha                 []float64
+	victimLowerYawBodyTarget            []float64
+	victimThirdpersonRecoil             []float32
+	victimBlockingUseActionInProgress   []int
+	victimMoveState                     []int
+	victimPlayerState                   []int
+	victimViewPunchAngleX               []float64
+	victimViewPunchAngleY               []float64
+	victimViewPunchAngleZ               []float64
+	victimAimPunchAngleX                []float64
+	victimAimPunchAngleY                []float64
+	victimAimPunchAngleZ                []float64
+	victimAimPunchAngleVelX             []float64
+	victimAimPunchAngleVelY             []float64
+	victimAimPunchAngleVelZ             []float64
+	victimInDuckJump                    []bool
+	victimFOVRate                       []float64
+	victimFallVelocity                  []float64
+	victimStepSize                      []float32
+	victimWearingSuit                   []bool
+	victimPoisoned                      []bool
+	victimDuckOverride                  []float64
+	victimStamina                       []float64
+	victimVelocityModifier              []float64
+	victimDirection                     []int
+	victimShotsFired                    []int
+	victimTimeOfLastInjury              []float64
+	victimRelativeDirectionOfLastInjury []int
+	victimVecLadderNormalX              []float64
+	victimVecLadderNormalY              []float64
+	victimVecLadderNormalZ              []float64
+	victimPhysicsCollisionState         []int
+	victimWaterLevel                    []int
+	victimLifeState                     []int
+	victimLadderSurfaceProps            []int
+	victimFOVStart                      []int
+	victimFOV                           []int
+	victimDefaultFOV                    []int
+	victimMaxSpeed                      []float64
+	victimFOVTime                       []float64
+	victimDuckSpeed                     []float64
+	victimDuckAmount                    []float64
+	victimPhysicsFlags                  []int
+	victimVecBaseVelocityX              []float64
+	victimVecBaseVelocityY              []float64
+	victimVecBaseVelocityZ              []float64
+	victimLaggedMovementValue           []float64
+	victimM3ReloadState                 []bool
+	victimNOVAReloadState               []bool
+	victimSawedoffReloadState           []bool
+	victimXM1014ReloadState             []bool
+	victimMoveType                      []int
+	victimMoveCollide                   []int
+	victimUseLookAtAngle                []float32
+	victimSimulationTime                []int
+	victimShadowCastDistance            []float32
+	victimMaxFallVelocity               []float32
+	victimLastMadeNoiseTime             []float64
+	victimNextPrimaryAttack             []float32
+	victimNextSecondaryAttack           []float32
+	victimTimeWeaponIdle                []float32
+	victimWeaponState                   []int
+	victimBurstShotsRemaining           []int
+	victimViewTarget                    []int
+	victimForceBone                     []int
+	victimDeltaYaw                      []float32
+	victimDeltaPitch                    []float32
+	crosshairToAttackerYaw              []float32
+	crosshairToAttackerPitch            []float32
+	VictimSpottedTargetPlayer           []bool
+	VictimToAttackerX                   []float64
+	VictimToAttackerY                   []float64
+	VictimToAttackerZ                   []float64
+	VictimSpottedByAttacker             []bool
+	VictimFootstep                      []bool
+	VictimDistance                      []float32
+	VictimFixedPitch                    []float32
+	VictimFallDamage                    []float32
+	VictimWeaponFireOnEmpty             []bool
+}
+
+//Kill holds information about PlayerDeath of *demoinfocs.common.events
+
+type Kill struct {
+	Weapon            *common.Equipment
+	Victim            *common.Player
+	Killer            *common.Player
+	Assister          *common.Player
+	PenetratedObjects int
+	IsHeadshot        bool
+	AssistedFlash     bool
+	AttackerBlind     bool
+	NoScope           bool
+	ThroughSmoke      bool
+	Distance          float32
+}
+
+// AttackTime marks when an attacker shot a victim
+type AttackTime struct {
+	attacker *common.Player
+	victim   *common.Player
+
+	attackFrame int
+
+	//a_spotted_v  bool
+	//v_spotted_a  bool
+	HitGroup          events.HitGroup
+	GamePhase         common.GamePhase
+	IsWarmupPeriod    bool
+	IsMatchStarted    bool
+	ArmorDamage       int
+	HealthDamageTaken int
+	WeaponString      string
+}
+
+type FireFrameKey struct {
+	shooter int
+	frame   int
+}
+
+type FootstepKey struct {
+	player int
+	frame  int
+}
+
+type FallDamageKey struct {
+	player int32
+	frame  int
+}
+
+type WeaponFOEKey struct {
+	player any
+	frame  any
+}
