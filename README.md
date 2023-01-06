@@ -209,4 +209,14 @@ health
 hitgroup
 ```
 
+To use the parser clone the respiratory
+```
+git clone github.com/mwaurawakati/cs-go && cd cs-go
+```
+
+Then run the main.go file folloed by path to you demo files
+
+```
+go run main.go ./path/to/demo/files
+```
 
